@@ -12,26 +12,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.hamza.cityinput.presentation.CityInputScreen
+import com.hamza.weatherapp.navigation.AppNavigation
 import com.hamza.weatherapp.ui.theme.WeatherAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             WeatherAppTheme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "cityinput") {
-                        composable("cityinput") {
-                            CityInputScreen(
-                                onCitySubmitted = { city ->
-                                    //navController.navigate("cityweatherdetails/$city")
-                                }
-                            )
-                        }
-                    }
-                }
+                AppNavigation()
             }
         }
     }
