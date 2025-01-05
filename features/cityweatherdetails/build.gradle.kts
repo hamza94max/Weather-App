@@ -62,6 +62,23 @@ dependencies {
     implementation (libs.hilt.android)
     kapt (libs.hilt.android.compiler)
 
+    // testing
+    // Mockito
+    testImplementation (libs.mockito.core)
+
+    // Coroutine testing
+    testImplementation (libs.kotlinx.coroutines.test)
+
+    // Truth
+    testImplementation (libs.truth)
+
+    // Mockk
+    testImplementation (libs.mockk)
+
+    // Hilt testing 
+    androidTestImplementation (libs.hilt.android.testing)
+    kaptAndroidTest (libs.hilt.compiler)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
