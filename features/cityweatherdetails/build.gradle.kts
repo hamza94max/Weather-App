@@ -55,6 +55,8 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.viewmodel.android)
 
+    implementation(files("Libs/weatherutils.aar"))
+
     //hilt
     implementation (libs.androidx.hilt.navigation.compose)
     implementation (libs.hilt.android)

@@ -7,8 +7,12 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+        google()
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            url = uri("file://${rootProject.projectDir}/build/repo")
+        } // Local repository
     }
 }
 dependencyResolutionManagement {

@@ -1,5 +1,6 @@
 package com.hamza.cityweatherdetails.presentation.components
 
+import com.hamza.weatherutils.utils.WeatherDataFormatter
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -19,9 +20,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.hamza.cityweatherdetails.R
 import com.hamza.core.utils.DateFormatter.getDayName
 import com.hamza.data.remote.models.forecasts.DailyForecastData
+import com.hamza.weatherutils.utils.WeatherIconMapper
 
 @Composable
 fun DailyForecastItem(
@@ -43,7 +44,7 @@ fun DailyForecastItem(
                 .clickable { onClick(dailyForecastData) }
         ) {
             Image(
-                painter = painterResource(id = R.drawable.sunny),
+                painter = painterResource(id = WeatherIconMapper.getWeatherIcon(dailyForecastData.weather[0].main)),
                 contentDescription = null,
                 modifier = Modifier
                     .size(35.dp)
@@ -63,7 +64,7 @@ fun DailyForecastItem(
 
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                text = "${((dailyForecastData.main.temp_max - 32) * 5 / 9)} / ${((dailyForecastData.main.temp_min - 32) * 5 / 9)} °C",
+                text = WeatherDataFormatter.formatTemperature(dailyForecastData.main.temp),
                 style = MaterialTheme.typography.titleSmall, maxLines = 1
             )
 
