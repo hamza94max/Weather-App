@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -37,8 +38,7 @@ fun CityWeatherDetailsScreen(
 ) {
 
     LaunchedEffect(Unit) {
-        viewModel.fetchCurrentWeather()
-        viewModel.fetchSevenForecasts()
+        viewModel.sevenForecastsIntent.send(ForecastsIntent.FetchSevenForecasts)
     }
 
     val currentWeatherUiState by viewModel.currentWeatherUiState.collectAsState()
@@ -50,43 +50,43 @@ fun CityWeatherDetailsScreen(
             .background(Color.Transparent)
             .padding(10.dp),
     ) {
-        item {
-            Spacer(modifier = Modifier.height(10.dp))
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(10.dp)
-            ) {
-                Icon(Icons.Filled.LocationOn, "Location")
-                Spacer(modifier = Modifier.width(5.dp))
-                Text(
-                    text = "Cairo",
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-                Spacer(modifier = Modifier.weight(1f))
 
-                // Uncomment and implement if needed
-                // var isDarkTheme = false
-                // Switch(
-                //     checked = isDarkTheme,
-                //     onCheckedChange = { darkTheme ->
-                //         isDarkTheme = darkTheme
-                //     },
-                //     modifier = Modifier
-                //         .padding(8.dp)
-                //         .height(20.dp)
-                //         .width(60.dp)
-                //         .clip(RoundedCornerShape(200.dp))
-                // )
-            }
-        }
 
         item {
             when {
-                currentWeatherUiState.isLoading -> CircularProgressIndicator()
+                currentWeatherUiState.isLoading -> CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
                 currentWeatherUiState.error != null -> Text(text = "Error: ${currentWeatherUiState.error}")
                 else -> {
+
                     if (currentWeatherUiState.condition.isNotEmpty()) {
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(10.dp)
+                        ) {
+                            Icon(Icons.Filled.LocationOn, "Location")
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = currentWeatherUiState.cityName,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Spacer(modifier = Modifier.weight(1f))
+
+                            // Uncomment and implement if needed
+                            // var isDarkTheme = false
+                            // Switch(
+                            //     checked = isDarkTheme,
+                            //     onCheckedChange = { darkTheme ->
+                            //         isDarkTheme = darkTheme
+                            //     },
+                            //     modifier = Modifier
+                            //         .padding(8.dp)
+                            //         .height(20.dp)
+                            //         .width(60.dp)
+                            //         .clip(RoundedCornerShape(200.dp))
+                            // )
+                        }
                         CurrentWeatherCard(currentWeatherUiState)
                     } else {
                         NoDataFound(viewModel, stringResource(R.string.no_current_conditions_found))
@@ -97,7 +97,7 @@ fun CityWeatherDetailsScreen(
 
         item {
             when {
-                forecastsUiState.isLoading -> CircularProgressIndicator()
+                forecastsUiState.isLoading -> CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
                 forecastsUiState.error != null -> Text(text = "Error: ${forecastsUiState.error}")
                 else -> {
                     if (forecastsUiState.dailyForecastsData.isNotEmpty()) {
@@ -109,7 +109,7 @@ fun CityWeatherDetailsScreen(
                             )
                         }
                     } else {
-                        NoDataFound(viewModel, "No daily forecasts found")
+                        NoDataFound(viewModel, stringResource(R.string.no_daily_forecasts_found))
                     }
                 }
             }

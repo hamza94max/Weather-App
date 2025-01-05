@@ -2,4 +2,5 @@
 <resources>
     <string name="no_current_conditions_found">No Current conditions found</string>
     <string name="daily_forecasts">Daily Forecasts</string>
+    <string name="no_daily_forecasts_found">No daily forecasts found</string>
 </resources>
