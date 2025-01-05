@@ -56,6 +56,15 @@ dependencies {
     kapt (libs.hilt.android.compiler)
 
 
+    //testing
+    testImplementation (libs.junit.jupiter.api)
+    testImplementation (libs.junit.jupiter.engine)
+    testImplementation (libs.assertj.core)
+    // Truth
+    testImplementation (libs.truth)
+    // Mockito
+    testImplementation (libs.mockito.core)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
