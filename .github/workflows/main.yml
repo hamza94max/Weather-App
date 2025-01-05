@@ -1,3 +1,13 @@
+name: Android CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
 jobs:
   build:
     name: Build and Test Android App
