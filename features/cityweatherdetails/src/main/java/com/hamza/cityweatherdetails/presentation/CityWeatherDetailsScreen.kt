@@ -55,7 +55,12 @@ fun CityWeatherDetailsScreen(
         item {
             when {
                 currentWeatherUiState.isLoading -> CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
-                currentWeatherUiState.error != null -> Text(text = "Error: ${currentWeatherUiState.error}")
+                currentWeatherUiState.error != null -> {
+                    Text(
+                        text = "Error: ${currentWeatherUiState.error}",
+                        color = Color.Red
+                    )
+                }
                 else -> {
 
                     if (currentWeatherUiState.condition.isNotEmpty()) {
@@ -98,7 +103,7 @@ fun CityWeatherDetailsScreen(
         item {
             when {
                 forecastsUiState.isLoading -> CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
-                forecastsUiState.error != null -> Text(text = "Error: ${forecastsUiState.error}")
+                forecastsUiState.error != null -> Text(text = "Error: ${forecastsUiState.error}", color = Color.Red)
                 else -> {
                     if (forecastsUiState.dailyForecastsData.isNotEmpty()) {
                         Column {
