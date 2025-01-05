@@ -62,6 +62,15 @@ dependencies {
     // Chucker
     debugImplementation ("com.github.chuckerteam.chucker:library:3.5.2")
 
+    // Mockito
+    testImplementation (libs.mockito.core)
+    // Mockk
+    testImplementation (libs.mockk)
+    // Coroutine testing
+    testImplementation (libs.kotlinx.coroutines.test)
+    // Truth
+    testImplementation (libs.truth)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
