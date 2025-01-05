@@ -1,13 +1,3 @@
-name: Android CI/CD Pipeline
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
 jobs:
   build:
     name: Build and Test Android App
@@ -17,6 +7,10 @@ jobs:
       # Check out the code from your repository
       - name: Checkout Code
         uses: actions/checkout@v3
+
+      # Ensure gradlew is executable
+      - name: Ensure gradlew is executable
+        run: chmod +x ./gradlew
 
       # Set up JDK
       - name: Set up JDK 17
