@@ -2,6 +2,7 @@ package com.hamza.data.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.hamza.core.utils.Constants.CITY_SHARED_PREF
 import com.hamza.data.local.PreferenceManager
 import com.hamza.data.remote.ApiService
 import com.hamza.data.remote.WeatherRemoteDataSource
@@ -19,7 +20,7 @@ object DataModule {
     @Provides
     @Singleton
     fun provideSharedPreferences(context: Context): SharedPreferences {
-        return context.getSharedPreferences("weather_prefs", Context.MODE_PRIVATE)
+        return context.getSharedPreferences(CITY_SHARED_PREF, Context.MODE_PRIVATE)
     }
 
     @Provides

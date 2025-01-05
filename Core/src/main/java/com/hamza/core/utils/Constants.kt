@@ -8,5 +8,7 @@ object Constants {
 
     const val CITY_KEY_PREF = "city"
 
+    const val CITY_SHARED_PREF= "city_prefs"
+
 
 }
