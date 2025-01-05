@@ -3,6 +3,7 @@ package com.hamza.data.repository
 import com.hamza.data.local.PreferenceManager
 import com.hamza.data.remote.WeatherRemoteDataSource
 import com.hamza.data.remote.models.currentWeather.CurrentWeatherResponse
+import com.hamza.data.remote.models.forecasts.ForecastsResponse
 import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(
@@ -14,12 +15,16 @@ class WeatherRepository @Inject constructor(
         preferenceManager.saveCityInput(city)
     }
 
-    fun getCityInput(): String? {
-        return preferenceManager.getCityInput()
+    fun getCityInput(): String {
+        return preferenceManager.getCityInput().toString()
     }
 
-    suspend fun getCurrentWeather(city: String): CurrentWeatherResponse {
-        return remoteDataSource.getCurrentWeather(city)
+    suspend fun getCurrentWeather(): CurrentWeatherResponse {
+        return remoteDataSource.getCurrentWeather(getCityInput())
+    }
+
+    suspend fun getSevenDaysForecasts(): ForecastsResponse  {
+        return remoteDataSource.getSevenDaysForecasts(getCityInput())
     }
 
 

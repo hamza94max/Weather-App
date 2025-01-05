@@ -14,7 +14,7 @@ class PreferenceManager @Inject constructor(
 
 
     fun getCityInput(): String? {
-        return sharedPreferences.getString(CITY_KEY_PREF, null)
+        return sharedPreferences.getString(CITY_KEY_PREF, "")
     }
 
 

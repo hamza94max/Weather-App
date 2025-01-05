@@ -1,6 +1,7 @@
 package com.hamza.data.remote
 
 import com.hamza.data.remote.models.currentWeather.CurrentWeatherResponse
+import com.hamza.data.remote.models.forecasts.ForecastsResponse
 import javax.inject.Inject
 
 class WeatherRemoteDataSource @Inject constructor (
@@ -12,7 +13,9 @@ class WeatherRemoteDataSource @Inject constructor (
     }
 
 
-
+    suspend fun getSevenDaysForecasts(city: String): ForecastsResponse {
+        return apiService.getSevenDaysForecasts(city)
+    }
 
 
 
